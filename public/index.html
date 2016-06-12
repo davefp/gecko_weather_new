@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+		<title>Gecko-Weather</title>
+
+		<link rel="stylesheet" href="style.css" />
+    <style>
+    .wide {
+      width: 400px;
+    }
+    </style>
+	</head>
+
+	<body>
+		<div id="wrap">
+
+			<div id="header">
+
+				<div id="header-content">
+
+					<h1>Gecko-Weather</h1>
+<p>A simple weather widget for <a href='http://geckoboard.com'>Geckoboard</a></p>
+    <h2>Instructions</h2>
+    <form id='the-form'>
+      <ol>
+        <li>Find your location's WOEID: <a href="http://woeid.rosselliot.co.nz/">WOEID Lookup</a></li>
+        <li>Enter it here: <input name='woeid-entry' onkeyup='generateUrl()' onchange='generateUrl()' on /></li>
+        <li>Choose your preferred temperature format: <input id='f' type='radio' name='group1' value='f' onchange='generateUrl()' /><label for="f">&deg;F</label><input id='c' type='radio' name='group1' value='c' onchange='generateUrl()' checked /><label for="c">&deg;C</label></li>
+        <li>Copy this URL: <input name='url-output' class='wide' readonly='readonly' /></li>
+        <li>Create a new custom text widget on your Geckoboard</li>
+        <li>Paste the URL into the URL Data Feed field</li>
+        <li>Set the Widget Type to Custom</li>
+        <li>Set the Feed Format to JSON</li>
+        <li>Add the widget to your dashboard</li>
+      </ol>
+    </form>
+    <h2>Details</h2>
+    <p>This app uses the Yahoo Weather API to fetch current forecast info for your location then converts it into a format that works with Geckoboard's custom text widget.</p>
+    <p>Built by David Underwood in about 4 hours (including research).</p>
+    <p>Image by Pat Dalton. Used with permission.</p>
+    <p>HTML/CSS template by <a href="http://www.chris-creed.com/freebies/">Chris Creed</a></p>
+    					<div id="contact-details">
+						<p class="contact"><span>Email: </span><a href="mailto:davefp@gmail.com">davefp@gmail.com</a></p>
+						<p class="contact"><span>Blog: </span><a href="http://theflyingdeveloper.com">The Flying Developer</a></p>
+						<p class="contact"><span>Twitter: </span>@<a href="http://twitter.com/davefp">davefp</a></p>
+					</div>
+
+				</div><!--end header-content-->
+
+				<div id="header-photo">
+					<a href="http://www.flickr.com/photos/27518426@N03/3874225648/in/photostream/"><img src="clouds.jpg" /></a>
+				</div><!--end header-photo-->
+
+			</div><!--end header-->
+
+			<div class="line"></div>
+        </div>
+    <script>
+
+      function generateUrl() {
+
+        var woeid = document.forms[0].elements["woeid-entry"].value
+        var unit
+        if(document.forms[0].elements["f"].checked) {
+            unit = 'f'
+        } else {
+            unit='c'
+        }
+        document.forms[0].elements["url-output"].value = "http://gecko-weather.herokuapp.com/weather/" + woeid + ".json?unit=" + unit
+      }
+
+    </script>
+	</body>
+</html>
